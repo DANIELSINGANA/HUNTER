@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>CICTE</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <header>
+            </header> 
+            <section id="cabezera"></section>
+            <section id="cuerpo"></section>
+            <section id=""></section>
+            <main>
+                <h:form>
+                    <p:growl id="messages" showDetail="true" />
+
+                    <p:toolbar>
+                    </p:toolbar>
+                    <br/>
+                    <br/>
+                    <ui:insert name="contenido"/>
+                </h:form>
+            </main>
+            <fouter>
+            </fouter>
+        </f:view>
+    </h:body>
+</html>

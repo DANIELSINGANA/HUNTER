@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/templatePrincipal.xhtml">
+    <ui:define name="contenido">
+        <p:panel header="ADMINISTRACI&Oacute;N DE USUARIOS">
+            <p:dataTable value="#{usuariosAdmBean.usuarios}" var="usuario" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" paginatorPosition="bottom" selectionMode="single" selection="#{usuariosAdmBean.usuarioSelected}" rowKey="#{usuario.contrasena}">
+                <p:ajax event="rowSelect" update="@form"/>
+                <p:ajax event="rowUnselect" update="@form"/>
+                <p:column headerText="Nombre">
+                    #{usuario.nombre}
+                </p:column>
+                <p:column headerText="Estado">
+                    #{usuario.estado}
+                </p:column>
+                <p:column headerText="Contrasena">
+                    #{usuario.contrasena}
+                </p:column>
+            </p:dataTable>
+            
+            <p:commandButton value="Agregar" actionListener="#{usuariosAdmBean.agregar()}" update="@form"  disabled="#{not empty usuariosAdmBean.usuario}"/>
+            <p:commandButton value="Modificar" actionListener="#{usuariosAdmBean.modificar()}" update="@form" rendered="#{not empty usuariosAdmBean.usuarioSelected}" disabled="#{not empty usuariosAdmBean.usuario}"/>
+            <p:commandButton value="Eliminar" actionListener="#{usuariosAdmBean.eliminar()}" update="@form" rendered="#{not empty usuariosAdmBean.usuarioSelected}" disabled="#{not empty usuariosAdmBean.usuario}"/>
+
+            <p:panel header="Agregar/Modificar Usuario"  rendered="#{not empty usuariosAdmBean.usuario}">
+                <p:panelGrid columns="3">
+                    <p:outputLabel for="nombre" value="Nombre:"/>
+                    <p:inputText id="nombre" value="#{usuariosAdmBean.usuario.nombre}" maxlength="100" required="true" requiredMessage="Nombre requerido."/>
+                    <p:message for="nombre"/>
+                    
+                    <p:outputLabel for="contrasena" value="Contrasena:"/>
+                    <p:inputText id="contrasena" value="#{usuariosAdmBean.usuario.contrasena}" maxlength="100" required="true" requiredMessage="Nombre requerido."/>
+                    <p:message for="contrasena"/>
+                    
+                    <p:outputLabel for="Estado" value="Estado:"/>
+                    <p:selectOneMenu id="Estado" value="#{usuariosAdmBean.usuario.estado}" style="width:125px">
+                        <f:selectItem itemLabel="Seleccione" itemValue="" />
+                        <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO" />
+                        <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO" />
+                    </p:selectOneMenu>
+                    <p:message for="Estado"/>
+                </p:panelGrid>
+                <p:commandButton value="Guardar" actionListener="#{usuariosAdmBean.guardar()}" update="@form"/>
+                <p:commandButton value="Cancelar" actionListener="#{usuariosAdmBean.cancelar()}" update="@form" immediate="true" /> 
+            </p:panel>
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
