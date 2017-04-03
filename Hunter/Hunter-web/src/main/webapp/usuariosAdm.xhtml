@@ -7,6 +7,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/template/templatePrincipal.xhtml">
     <ui:define name="contenido">
+
         <p:panel header="ADMINISTRACI&Oacute;N DE USUARIOS">
             <p:dataTable value="#{usuariosAdmBean.usuarios}" var="usuario" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" paginatorPosition="bottom" selectionMode="single" selection="#{usuariosAdmBean.usuarioSelected}" rowKey="#{usuario.contrasena}">
                 <p:ajax event="rowSelect" update="@form"/>
@@ -21,21 +22,26 @@
                     #{usuario.contrasena}
                 </p:column>
             </p:dataTable>
-            
+
             <p:commandButton value="Agregar" actionListener="#{usuariosAdmBean.agregar()}" update="@form"  disabled="#{not empty usuariosAdmBean.usuario}"/>
             <p:commandButton value="Modificar" actionListener="#{usuariosAdmBean.modificar()}" update="@form" rendered="#{not empty usuariosAdmBean.usuarioSelected}" disabled="#{not empty usuariosAdmBean.usuario}"/>
             <p:commandButton value="Eliminar" actionListener="#{usuariosAdmBean.eliminar()}" update="@form" rendered="#{not empty usuariosAdmBean.usuarioSelected}" disabled="#{not empty usuariosAdmBean.usuario}"/>
+
+            <p:commandButton value="GSP" actionListener="#{usuariosAdmBean.eliminar()}" update="@form" rendered="#{not empty usuariosAdmBean.usuarioSelected}" disabled="#{not empty usuariosAdmBean.usuario}"/>
+
+            <p:commandButton action="Gps?faces-redirect=true" value="Gps"/>            
+
 
             <p:panel header="Agregar/Modificar Usuario"  rendered="#{not empty usuariosAdmBean.usuario}">
                 <p:panelGrid columns="3">
                     <p:outputLabel for="nombre" value="Nombre:"/>
                     <p:inputText id="nombre" value="#{usuariosAdmBean.usuario.nombre}" maxlength="100" required="true" requiredMessage="Nombre requerido."/>
                     <p:message for="nombre"/>
-                    
+
                     <p:outputLabel for="contrasena" value="Contrasena:"/>
                     <p:inputText id="contrasena" value="#{usuariosAdmBean.usuario.contrasena}" maxlength="100" required="true" requiredMessage="Nombre requerido."/>
                     <p:message for="contrasena"/>
-                    
+
                     <p:outputLabel for="Estado" value="Estado:"/>
                     <p:selectOneMenu id="Estado" value="#{usuariosAdmBean.usuario.estado}" style="width:125px">
                         <f:selectItem itemLabel="Seleccione" itemValue="" />
@@ -46,7 +52,14 @@
                 </p:panelGrid>
                 <p:commandButton value="Guardar" actionListener="#{usuariosAdmBean.guardar()}" update="@form"/>
                 <p:commandButton value="Cancelar" actionListener="#{usuariosAdmBean.cancelar()}" update="@form" immediate="true" /> 
+
+
             </p:panel>
+
+
+
+
+
         </p:panel>
 
     </ui:define>

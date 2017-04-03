@@ -47,7 +47,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>usuariosAdm.xhtml</welcome-file>
+        <welcome-file>gps.xhtml</welcome-file>
     </welcome-file-list>
     <error-page>
         <!-- Missing resource -->
