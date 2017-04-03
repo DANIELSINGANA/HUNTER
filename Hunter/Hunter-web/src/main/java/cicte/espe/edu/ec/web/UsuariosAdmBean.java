@@ -5,7 +5,9 @@
  */
 package cicte.espe.edu.ec.web;
 
+import cicte.espe.edu.ec.modelo.Gps;
 import cicte.espe.edu.ec.modelo.Usuario;
+import cicte.espe.edu.ec.servicios.GpsServicio;
 import cicte.espe.edu.ec.servicios.UsuarioServicio;
 import ec.edu.espe.sipro.web.utils.BaseBean;
 import ec.edu.espe.sipro.web.utils.FacesUtil;
@@ -32,11 +34,12 @@ public class UsuariosAdmBean  extends BaseBean implements Serializable
     private Usuario usuario;
     private Usuario usuarioSelected;
     private UsuarioServicio usuarioServicio=new UsuarioServicio();
-    
+   
     @PostConstruct
     public void postConstructor()
     {
         this.usuarios=this.usuarioServicio.ObtenerLista();
+       
     }
     public void agregar()
     {
