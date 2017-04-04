@@ -47,11 +47,6 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.6</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.maps</groupId>
-            <artifactId>google-maps-services</artifactId>
-            <version>0.1.18</version>
-        </dependency>
     </dependencies>
 
     <build>
