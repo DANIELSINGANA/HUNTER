@@ -8,13 +8,12 @@
                 template="/template/templatePrincipal.xhtml">
     <ui:define name="contenido">
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZA5NGqDldXwLCf3MbCM5wEfmdh9xScl4"></script>
-        <h:form>
-            <p:growl id="growl" showDetail="true" />
+        <h:form>          
+            <p:growl id="growl" life="3000" />
 
-            <p:gmap id="gmap" center="-1.7957703564951626,-78.13688745000002" zoom="4" type="HYBRID" model="#{markerSelectionView.simpleModel}"  style="width:100%;height:400px">
-                <p:ajax event="overlaySelect" listener="#{markerSelectionView.onMarkerSelect}" update="growl" />
-            </p:gmap>
+            <p:gmap id="gmap" center="36.890257,30.707417" zoom="13" type="HYBRID" style="width:100%;height:400px" model="#{polylinesView.polylineModel}">
+                <p:ajax event="overlaySelect" listener="#{polylinesView.onPolylineSelect}" update="growl" />
+            </p:gmap>                 
         </h:form>
     </ui:define>
 </ui:composition>
-

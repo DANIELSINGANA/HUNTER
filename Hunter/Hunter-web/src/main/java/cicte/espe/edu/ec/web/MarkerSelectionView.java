@@ -5,6 +5,8 @@ import cicte.espe.edu.ec.modelo.Gps;
 import cicte.espe.edu.ec.servicios.GpsServicio;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,18 +40,26 @@ public class MarkerSelectionView implements Serializable {
     private Marker marker;
     private GpsServicio gpsServicio=new GpsServicio();
     private static final Logger LOG = Logger.getLogger(MarkerSelectionView.class.getName());
-    
+    private List<String> coman=new ArrayList<String>(Arrays.asList("ERICK", "COMANDO", "DANIEL"));
     @PostConstruct
-    public void init() {
+    public void init() 
+    {
         simpleModel = new DefaultMapModel();
-          
+        /*gps=new Gps();
+        gps.setLatitud(-16.21575262976786);
+        gps.setLongitud(-48.00157736582031);
+        this.gpsServicio.Insert(gps);*/
         //Shared coordinates
+        int i=0;
         for(Gps g:this.gpsServicio.ObtenerLista())
-        {
-            LOG.log(Level.INFO,"l"+g.getLonguitud()+"la"+g.getLatitud());
-            LatLng coord1 = new LatLng(g.getLatitud(),g.getLonguitud());
+        {            
+            //LOG.log(Level.INFO,"l"+g.getLongitud()+"la"+g.getLatitud());
+            LatLng coord1 = new LatLng(g.getLatitud(),g.getLongitud());
+            //LatLng coord1 = new LatLng(-0.18659558628491135,-78.4305382);
+            //LatLng coord1 = new LatLng(-78.4305382, -0.18659558628491135);
             //LatLng coord1 = new LatLng(36.879466, 30.667648);
-            simpleModel.addOverlay(new Marker(coord1));
+            simpleModel.addOverlay(new Marker(coord1,coman.get(i)));
+            i++;
         }
        
         /*LatLng coord1 = new LatLng(36.879466, 30.667648);
